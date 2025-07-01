@@ -11,6 +11,7 @@ mod ffi {
         fn makeSpeak(animal: SharedPtr<IAnimal>);
 
         fn sumOf(numbers: &[u32]) -> u32;
+        fn reverse(strs: &mut [String]);
 
         include!("rust-cxx-hello/include/rust-cxx-hello-lib/rust-cxx-hello-lib.h");
 
@@ -27,11 +28,17 @@ fn main() {
 
     println!("String from C++: {}", ffi::helloString());
 
-    let dog = ffi::createDog();
-    //println!("Created a dog: {:?}", dog);
-    ffi::makeSpeak(dog.clone());
-
+    {
+        let dog = ffi::createDog();
+        //println!("Created a dog: {:?}", dog);
+        ffi::makeSpeak(dog.clone());
+    }
+    
     let numbers = vec![1, 2, 3, 4, 5];
     let sum = ffi::sumOf(&numbers);
     println!("Sum of {:?} is {}", numbers, sum);
+
+    let mut strs = vec!["Hello".to_string(), "World".to_string(), "from".to_string(), "Rust".to_string()];
+    ffi::reverse(&mut strs);
+    println!("Reversed strings: {:?}", strs);
 }

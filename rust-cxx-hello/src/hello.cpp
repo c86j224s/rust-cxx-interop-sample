@@ -50,3 +50,7 @@ uint32_t sumOf(rust::Slice<const uint32_t> numbers) {
     }
     return sum;
 }
+
+void reverse(rust::Slice<rust::String> strs) {
+    std::reverse(strs.begin(), strs.end());
+}
