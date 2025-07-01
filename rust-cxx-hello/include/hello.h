@@ -20,3 +20,5 @@ public:
 std::shared_ptr<IAnimal> createDog();
 
 void makeSpeak(std::shared_ptr<IAnimal> animal);
+
+uint32_t sumOf(rust::Slice<const uint32_t> numbers);

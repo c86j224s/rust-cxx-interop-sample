@@ -42,3 +42,11 @@ void makeSpeak(std::shared_ptr<IAnimal> animal) {
         std::cout << "Animal is null." << std::endl;
     }
 }
+
+uint32_t sumOf(rust::Slice<const uint32_t> numbers) {
+    uint32_t sum = 0;
+    for (const auto& number : numbers) {
+        sum += number;
+    }
+    return sum;
+}

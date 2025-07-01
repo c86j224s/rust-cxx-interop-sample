@@ -10,6 +10,8 @@ mod ffi {
         fn createDog() -> SharedPtr<IAnimal>;
         fn makeSpeak(animal: SharedPtr<IAnimal>);
 
+        fn sumOf(numbers: &[u32]) -> u32;
+
         include!("rust-cxx-hello/include/rust-cxx-hello-lib/rust-cxx-hello-lib.h");
 
         fn fnrustcxxhellolib();
@@ -28,4 +30,8 @@ fn main() {
     let dog = ffi::createDog();
     //println!("Created a dog: {:?}", dog);
     ffi::makeSpeak(dog.clone());
+
+    let numbers = vec![1, 2, 3, 4, 5];
+    let sum = ffi::sumOf(&numbers);
+    println!("Sum of {:?} is {}", numbers, sum);
 }
